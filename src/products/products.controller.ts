@@ -22,20 +22,23 @@ export class ProductsController {
     @Inject(PRODUCT_SERVICE) private readonly productsClient: ClientProxy,
   ) {}
 
-  // @Post()
-  // create(@Body() createProductDto: CreateProductDto) {
-  //   return this.productsService.create(createProductDto);
-  // }
+  @Post()
+  create(@Body() createProductDto: CreateProductDto) {
+    return this.productsClient.send(
+      { cmd: 'create_product' },
+      createProductDto,
+    );
+  }
 
   @Get()
   findAll(@Query() paginationDto: PaginationDto) {
     return this.productsClient.send({ cmd: 'get_all_products' }, paginationDto);
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.productsService.findOne(+id);
-  // }
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.productsClient.send({ cmd: 'find_one_product' }, { id });
+  }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
