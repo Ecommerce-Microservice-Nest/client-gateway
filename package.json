@@ -1,10 +1,25 @@
 {
   "name": "client-gateway",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "API Gateway for ecommerce microservices architecture built with NestJS",
+  "author": "Tu Nombre dieguidev",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "keywords": [
+    "nestjs",
+    "microservices",
+    "gateway",
+    "ecommerce",
+    "api"
+  ],
+  "homepage": "https://github.com/Ecommerce-Microservice-Nest/client-gateway#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ecommerce-Microservice-Nest/client-gateway.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ecommerce-Microservice-Nest/client-gateway/issues"
+  },
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
