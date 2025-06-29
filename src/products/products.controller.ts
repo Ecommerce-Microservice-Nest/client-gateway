@@ -60,14 +60,21 @@ export class ProductsController {
     @Param('id', ParseIntPipe) id: number,
     @Body() updateProductDto: UpdateProductDto,
   ) {
-    return this.productsClient.send(
-      { cmd: 'update_product' },
-      { id, ...updateProductDto },
-    );
+    return this.productsClient
+      .send({ cmd: 'update_product' }, { id, ...updateProductDto })
+      .pipe(
+        catchError((error) => {
+          throw new RpcException(error as string | object);
+        }),
+      );
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.productsClient.send({ cmd: 'delete_product' }, { id });
+    return this.productsClient.send({ cmd: 'delete_product' }, { id }).pipe(
+      catchError((error) => {
+        throw new RpcException(error as string | object);
+      }),
+    );
   }
 }
