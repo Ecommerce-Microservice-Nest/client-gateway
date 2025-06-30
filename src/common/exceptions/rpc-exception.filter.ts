@@ -23,7 +23,6 @@ export class RpcCustomExceptionFilter implements ExceptionFilter {
     ) {
       const errorResponse = rpcError as RpcErrorResponse;
 
-      // Ensure status is a valid number
       const statusCode =
         typeof errorResponse.status === 'number' ? errorResponse.status : 400;
 
