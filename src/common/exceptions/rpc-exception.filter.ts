@@ -22,12 +22,24 @@ export class RpcCustomExceptionFilter implements ExceptionFilter {
       'message' in rpcError
     ) {
       const errorResponse = rpcError as RpcErrorResponse;
-      return response.status(errorResponse.status).json(errorResponse);
+
+      // Ensure status is a valid number
+      const statusCode =
+        typeof errorResponse.status === 'number' ? errorResponse.status : 400;
+
+      return response.status(statusCode).json({
+        status: statusCode,
+        message: errorResponse.message,
+      });
     }
 
-    response.status(400).json({
-      status: 400,
-      message: rpcError,
+    const statusCode = 400;
+    const message =
+      typeof rpcError === 'string' ? rpcError : 'Internal server error';
+
+    response.status(statusCode).json({
+      status: statusCode,
+      message: message,
     });
   }
 }
