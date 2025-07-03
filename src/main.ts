@@ -13,6 +13,7 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
+      // transform: true,
       // forbidNonWhitelisted: true,
     }),
   );
@@ -22,4 +23,4 @@ async function bootstrap() {
   await app.listen(envs.port ?? 3000);
   logger.log(`Client Gateway is running on port ${envs.port ?? 3000}`);
 }
-bootstrap();
+void bootstrap();
